@@ -3,6 +3,9 @@ source "https://rubygems.org"
 ruby "3.2.0"
 gem "blueprinter"
 gem 'rack-cors'
+gem 'bcrypt'
+gem 'jwt'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3"
 
