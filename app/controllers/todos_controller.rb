@@ -1,6 +1,7 @@
 class TodosController < ApplicationController
     before_action :set_todo, only: [:show, :update, :destroy]
-  
+    before_action :authenticate_request
+
     def index
       todos = Todo.all
       render json: TodoBlueprint.render(todos, view: :normal), status: :ok
@@ -35,8 +36,15 @@ class TodosController < ApplicationController
       else
         render json: @todo.errors, status: :unprocessable_entity
       end
+
     end
-  
+     # Should this be private?
+    def my_todos
+    todos = @current_user.todos
+
+    render json: TodoBlueprint.render(todos, view: :normal), status: :ok
+    end
+   
     private
   
     def set_todo
